@@ -87,4 +87,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\external\irrKlang-64bit-1.5.0\bin\winx64-visualStudio\ikpMP3.dll" />
+    <None Include="..\external\irrKlang-64bit-1.5.0\bin\winx64-visualStudio\irrKlang.dll" />
+  </ItemGroup>
 </Project>

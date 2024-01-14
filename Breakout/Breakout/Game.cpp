@@ -16,6 +16,8 @@
 
 #include <iostream>
 #include <algorithm>
+#include <irrKlang.h>
+using namespace irrklang;
 
 // Game-related State data
 SpriteRenderer* Renderer;
@@ -23,6 +25,7 @@ GameObject* Player;
 BallObject* Ball;
 ParticleGenerator* Particles;
 PostProcessor* Effects;
+ISoundEngine* SoundEngine = createIrrKlangDevice();
 
 float ShakeTime = 0.0f;
 
@@ -91,6 +94,9 @@ void Game::Init()
         -BALL_RADIUS * 2.0f);
     Ball = new BallObject(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY,
         ResourceManager::GetTexture("face"));
+
+    //! Play music
+    SoundEngine->play2D("audio/breakout.mp3", true);
 }
 
 void Game::Update(float dt)
