@@ -42,6 +42,7 @@ Game::~Game()
     delete Ball;
     delete Particles;
     delete Effects;
+    SoundEngine->drop();
 }
 
 void Game::Init()
@@ -349,11 +350,13 @@ void Game::DoCollisions()
                 {
                     box.Destroyed = true;
                     this->SpawnPowerUps(box);
+                    SoundEngine->play2D("audio/bleep.mp3", false);
                 }
                 else
                 {   // if block is solid, enable shake effect
                     ShakeTime = 0.05f;
                     Effects->Shake = true;
+                    SoundEngine->play2D("audio/solid.wav", false);
                 }
                 // collision resolution
                 Direction dir = std::get<1>(collision);
@@ -399,6 +402,7 @@ void Game::DoCollisions()
                 ActivatePowerUp(powerUp);
                 powerUp.Destroyed = true;
                 powerUp.Activated = true;
+                SoundEngine->play2D("audio/powerup.wav", false);
             }
         }
     }
@@ -422,6 +426,8 @@ void Game::DoCollisions()
 
         // if Sticky powerup is activated, also stick ball to paddle once new velocity vectors were calculated
         Ball->Stuck = Ball->Sticky;
+
+        SoundEngine->play2D("audio/bleep.wav", false);
     }
 }
 
